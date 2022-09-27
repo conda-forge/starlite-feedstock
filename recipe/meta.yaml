@@ -25,9 +25,9 @@ requirements:
     - pydantic_factories
     - pydantic-openapi-schema
     - python >=3.7,<4.0
-    - starlite-multipart
     - pyyaml
     - starlette
+    - starlite-multipart
     - typing-extensions
 
 test:
@@ -36,6 +36,7 @@ test:
   commands:
     - pip check
   requires:
+    - picologging
     - pip
 
 about:
