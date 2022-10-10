@@ -1,5 +1,5 @@
 {% set name = "starlite" %}
-{% set version = "1.25.0" %}
+{% set version = "1.26.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/starlite-{{ version }}.tar.gz
-  sha256: 2450d088ef5dcf51d0f2b8ac4c71b21f80d3d74880a649da557ed4b6c4e20db6
+  sha256: 3c3c5e99bb58d38386711c232746e448b9a856b4ee8fcc8b083928ad37c84200
 
 build:
   noarch: python
@@ -27,7 +27,7 @@ requirements:
     - python >=3.7,<4.0
     - pyyaml
     - starlette
-    - starlite-multipart
+    - starlite-multipart >=1.2.0
     - typing-extensions
 
 test:
