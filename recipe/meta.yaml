@@ -27,7 +27,7 @@ requirements:
     - python >=3.7,<4.0
     - pyyaml
     - starlette
-    - starlite-multipart
+    - starlite-multipart >=1.2.0
     - typing-extensions
 
 test:
