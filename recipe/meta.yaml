@@ -20,13 +20,15 @@ requirements:
     - poetry-core >=1.0.0
     - python >=3.7,<4.0
   run:
+    - anyio >=3
+    - httpx >=0.22
     - orjson
     - pydantic
     - pydantic_factories
     - pydantic-openapi-schema
     - python >=3.7,<4.0
     - pyyaml
-    - starlette
+    - starlette >=0.21
     - starlite-multipart >=1.2.0
     - typing-extensions
 
