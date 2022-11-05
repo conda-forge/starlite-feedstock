@@ -1,5 +1,5 @@
 {% set name = "starlite" %}
-{% set version = "1.35.1" %}
+{% set version = "1.36.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/starlite-{{ version }}.tar.gz
-  sha256: 6f43ffc5eef3f41575958c746efd8eb99241bff048b2e4dd9eaee74ab81152e4
+  sha256: 259df69e2c3641c0ac9e8dac770ec7da169db35fd65a17edd98735a44a8f6072
 
 build:
   noarch: python
@@ -22,6 +22,7 @@ requirements:
   run:
     - anyio >=3
     - httpx >=0.22
+    - multidict >=6.0.2
     - orjson
     - pydantic
     - pydantic_factories
