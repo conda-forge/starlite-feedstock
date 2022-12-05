@@ -29,7 +29,6 @@ requirements:
     - pydantic-openapi-schema
     - python >=3.8,<4.0
     - pyyaml
-    - starlite-multipart >=1.2.0
     - typing-extensions
 
 test:
