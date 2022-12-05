@@ -1,5 +1,5 @@
 {% set name = "starlite" %}
-{% set version = "1.43.1" %}
+{% set version = "1.44.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/starlite-{{ version }}.tar.gz
-  sha256: a67712db59113c3a043c1f25a65fd42e5f3c8f09974e6ea0e3c18085f6e909ac
+  sha256: eee794f06024255843ef7a589081da3e184843c5569781fac7c1c5e20a3c33a1
 
 build:
   noarch: python
@@ -29,7 +29,6 @@ requirements:
     - pydantic-openapi-schema
     - python >=3.8,<4.0
     - pyyaml
-    - starlite-multipart >=1.2.0
     - typing-extensions
 
 test:
