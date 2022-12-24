@@ -44,6 +44,8 @@ test:
     - pip check
     - starlite --help
   requires:
+    - jinja2 >=3.1.2
+    - mako >=1.2.4
     - picologging
     - pip
 
