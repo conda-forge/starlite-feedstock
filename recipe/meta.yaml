@@ -1,5 +1,5 @@
 {% set name = "starlite" %}
-{% set version = "1.45.1" %}
+{% set version = "1.46.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,14 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/starlite-{{ version }}.tar.gz
-  sha256: e6050bf2a248fb285f8aeeb1d649b077dd0c34c5dd14e429628819927f25da64
+  sha256: 9939dd0622191a80efc16a0e5ef83690cf362b906a36721b467e62219d591599
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
   number: 0
+  entry_points:
+    - starlite=starlite.cli:cli
 
 requirements:
   host:
@@ -21,15 +23,18 @@ requirements:
     - python >=3.8,<4.0
   run:
     - anyio >=3
+    # For CLI
+    - click >=8.1.3
     - httpx >=0.22
-    - msgspec >=0.10.1
+    - msgspec >=0.11.0
     - multidict >=6.0.2
-    - orjson
     - pydantic
     - pydantic_factories
-    - pydantic-openapi-schema
+    - pydantic-openapi-schema >=1.5.0
     - python >=3.8,<4.0
     - pyyaml
+    # For CLI
+    - rich >=12.6.0
     - typing-extensions
 
 test:
@@ -37,7 +42,10 @@ test:
     - starlite
   commands:
     - pip check
+    - starlite --help
   requires:
+    - jinja2 >=3.1.2
+    - mako >=1.2.4
     - picologging
     - pip
 
