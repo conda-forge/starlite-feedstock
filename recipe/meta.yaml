@@ -43,7 +43,7 @@ outputs:
         - fast-query-parsers
         - httpx >=0.22
         - importlib-metadata
-        - mako
+        - mako >=1.2.4
         - msgspec >=0.11.0
         - multidict >=6.0.2
         - pydantic
