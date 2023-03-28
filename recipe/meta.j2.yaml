@@ -1,0 +1,105 @@
+{% set version = "<< version >>" %}
+
+package:
+  name: starlite-split
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/s/starlite/starlite-{{ version }}.tar.gz
+  # the SHA256 gets updated by the bot
+  sha256: << sha256_sum >>
+
+build:
+  # the build number gets reset by the bot
+  number: << build_number >>
+  noarch: python
+
+requirements:
+  host:
+    - python << min_python >>
+  run:
+    - python << min_python >>
+
+outputs:
+  - name: starlite
+    build:
+      noarch: python
+      script:
+        - {{ PYTHON }} {{ RECIPE_DIR }}/update_recipe.py --check
+        - {{ PYTHON }} -m pip install . -vv --no-deps --ignore-installed --no-build-isolation
+      entry_points:
+        - starlite = starlite:__main__
+    requirements:
+      host:
+        - pip
+        - poetry-core >=1.0.0
+        - python << min_python >>
+        # for `update_recipe.py` preflight
+        - jinja2
+        - tomli
+      run:
+        - python << min_python >><% for dep in core_deps %>
+        - << dep >>
+        <%- endfor %>
+    test:
+      imports:
+        - starlite
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework
+      license: MIT
+      license_file: LICENSE
+<% for extra, extra_deps in extra_outputs.items() %>
+  - name: starlite-with-<< extra >>
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python << min_python >>
+      run:
+        - python << min_python >>
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}<% for dep in extra_deps %>
+        - << dep >>
+        <%- endfor %>
+    test:
+      imports:
+        - starlite<% if extra in extra_test_imports %>
+        - << extra_test_imports[extra] >>
+        <%- else %>
+        # TODO: import test for << extra >>
+        <%- endif %>
+      commands:
+        - pip check<% if extra in extra_test_commands %>
+        - << extra_test_commands[extra] >>
+        <%- endif %>
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with << extra >>)
+      license: MIT
+      license_file: LICENSE
+<% endfor %>
+
+about:
+  home: https://starliteproject.dev
+  dev_url: https://github.com/starlite-api/starlite
+  doc_url: https://docs.starliteproject.dev
+  summary: Light-weight and flexible ASGI API Framework
+  license: MIT
+  license_file: LICENSE
+
+extra:
+  feedstock-name: starlite
+  recipe-maintainers:
+    - thewchan
+    - bollwyvl
