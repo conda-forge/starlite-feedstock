@@ -75,7 +75,9 @@ TARBALL_URL = f"{DEV_URL}/archive/refs/tags/v{VERSION}.tar.gz"
 PYPROJECT_TOML = f"starlite-{VERSION}/pyproject.toml"
 
 #: despite claiming optional, these end up as hard `Requires-Dist`
-KNOWN_REQS = []
+KNOWN_REQS = [
+    "mako",
+]
 
 #: these are handled externally
 KNOWN_SKIP = [
