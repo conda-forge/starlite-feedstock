@@ -188,6 +188,12 @@ def update_recipe(check=False):
     core_deps = sorted(
         [reqtify(d, deps) for d, d_spec in deps.items() if is_required(d, d_spec)]
     )
+
+    # merge in dev deps late to get some missing version numbers
+    for dep, spec in pyproject["tool"]["poetry"]["group"]["dev"]["dependencies"].items():
+        if dep not in deps:
+            deps[dep] = spec
+
     extras = pyproject["tool"]["poetry"]["extras"]
     extra_outputs = {
         extra: sorted([reqtify(d, deps) for d in extra_deps if d in deps])
