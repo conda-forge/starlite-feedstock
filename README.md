@@ -1,15 +1,176 @@
-About starlite
-==============
-
-Home: https://github.com/starlite-api/starlite
-
-Package license: MIT
+About starlite-feedstock
+========================
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/starlite-feedstock/blob/main/LICENSE.txt)
 
+About starlite
+--------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
 Summary: Light-weight and flexible ASGI API Framework
 
-Documentation: https://starlite-api.github.io/starlite/
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-brotli
+--------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with brotli)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-cli
+-----------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with cli)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-cryptography
+--------------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with cryptography)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-full
+------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with full)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-jinja
+-------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with jinja)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-jwt
+-----------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with jwt)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-memcached
+-----------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with memcached)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-opentelemetry
+---------------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with opentelemetry)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-picologging
+-------------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with picologging)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-redis
+-------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with redis)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-standard
+----------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with standard)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-structlog
+-----------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with structlog)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
+About starlite-with-tortoise-orm
+--------------------------------
+
+Home: https://starliteproject.dev
+
+Package license: MIT
+
+Summary: Light-weight and flexible ASGI API Framework (with tortoise-orm)
+
+Development: https://github.com/starlite-api/starlite
+
+Documentation: https://docs.starliteproject.dev
 
 Current build status
 ====================
@@ -30,6 +191,19 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-starlite-green.svg)](https://anaconda.org/conda-forge/starlite) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite.svg)](https://anaconda.org/conda-forge/starlite) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite.svg)](https://anaconda.org/conda-forge/starlite) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite.svg)](https://anaconda.org/conda-forge/starlite) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--brotli-green.svg)](https://anaconda.org/conda-forge/starlite-with-brotli) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-brotli.svg)](https://anaconda.org/conda-forge/starlite-with-brotli) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-brotli.svg)](https://anaconda.org/conda-forge/starlite-with-brotli) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-brotli.svg)](https://anaconda.org/conda-forge/starlite-with-brotli) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--cli-green.svg)](https://anaconda.org/conda-forge/starlite-with-cli) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-cli.svg)](https://anaconda.org/conda-forge/starlite-with-cli) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-cli.svg)](https://anaconda.org/conda-forge/starlite-with-cli) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-cli.svg)](https://anaconda.org/conda-forge/starlite-with-cli) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--cryptography-green.svg)](https://anaconda.org/conda-forge/starlite-with-cryptography) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-cryptography.svg)](https://anaconda.org/conda-forge/starlite-with-cryptography) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-cryptography.svg)](https://anaconda.org/conda-forge/starlite-with-cryptography) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-cryptography.svg)](https://anaconda.org/conda-forge/starlite-with-cryptography) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--full-green.svg)](https://anaconda.org/conda-forge/starlite-with-full) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-full.svg)](https://anaconda.org/conda-forge/starlite-with-full) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-full.svg)](https://anaconda.org/conda-forge/starlite-with-full) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-full.svg)](https://anaconda.org/conda-forge/starlite-with-full) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--jinja-green.svg)](https://anaconda.org/conda-forge/starlite-with-jinja) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-jinja.svg)](https://anaconda.org/conda-forge/starlite-with-jinja) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-jinja.svg)](https://anaconda.org/conda-forge/starlite-with-jinja) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-jinja.svg)](https://anaconda.org/conda-forge/starlite-with-jinja) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--jwt-green.svg)](https://anaconda.org/conda-forge/starlite-with-jwt) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-jwt.svg)](https://anaconda.org/conda-forge/starlite-with-jwt) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-jwt.svg)](https://anaconda.org/conda-forge/starlite-with-jwt) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-jwt.svg)](https://anaconda.org/conda-forge/starlite-with-jwt) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--memcached-green.svg)](https://anaconda.org/conda-forge/starlite-with-memcached) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-memcached.svg)](https://anaconda.org/conda-forge/starlite-with-memcached) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-memcached.svg)](https://anaconda.org/conda-forge/starlite-with-memcached) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-memcached.svg)](https://anaconda.org/conda-forge/starlite-with-memcached) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--opentelemetry-green.svg)](https://anaconda.org/conda-forge/starlite-with-opentelemetry) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-opentelemetry.svg)](https://anaconda.org/conda-forge/starlite-with-opentelemetry) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-opentelemetry.svg)](https://anaconda.org/conda-forge/starlite-with-opentelemetry) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-opentelemetry.svg)](https://anaconda.org/conda-forge/starlite-with-opentelemetry) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--picologging-green.svg)](https://anaconda.org/conda-forge/starlite-with-picologging) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-picologging.svg)](https://anaconda.org/conda-forge/starlite-with-picologging) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-picologging.svg)](https://anaconda.org/conda-forge/starlite-with-picologging) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-picologging.svg)](https://anaconda.org/conda-forge/starlite-with-picologging) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--redis-green.svg)](https://anaconda.org/conda-forge/starlite-with-redis) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-redis.svg)](https://anaconda.org/conda-forge/starlite-with-redis) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-redis.svg)](https://anaconda.org/conda-forge/starlite-with-redis) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-redis.svg)](https://anaconda.org/conda-forge/starlite-with-redis) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--standard-green.svg)](https://anaconda.org/conda-forge/starlite-with-standard) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-standard.svg)](https://anaconda.org/conda-forge/starlite-with-standard) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-standard.svg)](https://anaconda.org/conda-forge/starlite-with-standard) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-standard.svg)](https://anaconda.org/conda-forge/starlite-with-standard) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--structlog-green.svg)](https://anaconda.org/conda-forge/starlite-with-structlog) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-structlog.svg)](https://anaconda.org/conda-forge/starlite-with-structlog) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-structlog.svg)](https://anaconda.org/conda-forge/starlite-with-structlog) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-structlog.svg)](https://anaconda.org/conda-forge/starlite-with-structlog) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-starlite--with--tortoise--orm-green.svg)](https://anaconda.org/conda-forge/starlite-with-tortoise-orm) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/starlite-with-tortoise-orm.svg)](https://anaconda.org/conda-forge/starlite-with-tortoise-orm) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/starlite-with-tortoise-orm.svg)](https://anaconda.org/conda-forge/starlite-with-tortoise-orm) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/starlite-with-tortoise-orm.svg)](https://anaconda.org/conda-forge/starlite-with-tortoise-orm) |
 
 Installing starlite
 ===================
@@ -41,16 +215,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `starlite` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `starlite, starlite-with-brotli, starlite-with-cli, starlite-with-cryptography, starlite-with-full, starlite-with-jinja, starlite-with-jwt, starlite-with-memcached, starlite-with-opentelemetry, starlite-with-picologging, starlite-with-redis, starlite-with-standard, starlite-with-structlog, starlite-with-tortoise-orm` can be installed with `conda`:
 
 ```
-conda install starlite
+conda install starlite starlite-with-brotli starlite-with-cli starlite-with-cryptography starlite-with-full starlite-with-jinja starlite-with-jwt starlite-with-memcached starlite-with-opentelemetry starlite-with-picologging starlite-with-redis starlite-with-standard starlite-with-structlog starlite-with-tortoise-orm
 ```
 
 or with `mamba`:
 
 ```
-mamba install starlite
+mamba install starlite starlite-with-brotli starlite-with-cli starlite-with-cryptography starlite-with-full starlite-with-jinja starlite-with-jwt starlite-with-memcached starlite-with-opentelemetry starlite-with-picologging starlite-with-redis starlite-with-standard starlite-with-structlog starlite-with-tortoise-orm
 ```
 
 It is possible to list all of the versions of `starlite` available on your platform with `conda`:
@@ -145,5 +319,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@bollwyvl](https://github.com/bollwyvl/)
 * [@thewchan](https://github.com/thewchan/)
 
