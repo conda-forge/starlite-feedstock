@@ -1,53 +1,454 @@
-{% set name = "starlite" %}
-{% set version = "1.45.1" %}
+{% set version = "1.51.7" %}
 
 package:
-  name: {{ name|lower }}
+  name: starlite-split
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/starlite-{{ version }}.tar.gz
-  sha256: e6050bf2a248fb285f8aeeb1d649b077dd0c34c5dd14e429628819927f25da64
+  url: https://pypi.io/packages/source/s/starlite/starlite-{{ version }}.tar.gz
+  # the SHA256 gets updated by the bot
+  sha256: 7e4b25f002d8edbf928f1588d1e7eb85375c6ed0834c190072af662403110af6
 
 build:
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  # the build number gets reset by the bot
   number: 0
+  noarch: python
 
 requirements:
   host:
-    - pip
-    - poetry-core >=1.0.0
-    - python >=3.8,<4.0
+    - python >=3.7
   run:
-    - anyio >=3
-    - httpx >=0.22
-    - msgspec >=0.10.1
-    - multidict >=6.0.2
-    - orjson
-    - pydantic
-    - pydantic_factories
-    - pydantic-openapi-schema
-    - python >=3.8,<4.0
-    - pyyaml
-    - typing-extensions
+    - python >=3.7
 
-test:
-  imports:
-    - starlite
-  commands:
-    - pip check
-  requires:
-    - picologging
-    - pip
+outputs:
+  - name: starlite
+    build:
+      noarch: python
+      script:
+        - {{ PYTHON }} {{ RECIPE_DIR }}/update_recipe.py --check
+        - {{ PYTHON }} -m pip install . -vv --no-deps --ignore-installed --no-build-isolation
+      entry_points:
+        - starlite = starlite:__main__
+    requirements:
+      host:
+        - pip
+        - poetry-core >=1.0.0
+        - python >=3.7
+        # for `update_recipe.py` preflight
+        - jinja2
+        - tomli
+      run:
+        - python >=3.7
+        - anyio >=3
+        - fast-query-parsers
+        - httpx >=0.22
+        - importlib-metadata
+        - mako >=1.2.4
+        - msgspec >=0.11.0
+        - multidict >=6.0.2
+        - pydantic
+        - pydantic-openapi-schema >=1.5.0
+        - pydantic_factories
+        - pyyaml
+        - typing_extensions
+    test:
+      imports:
+        - starlite
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-brotli
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - brotli
+    test:
+      imports:
+        - starlite
+        # TODO: import test for brotli
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with brotli)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-cli
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - click
+        - jsbeautifier
+        - rich >=13.0.0
+    test:
+      imports:
+        - starlite
+        - starlite.cli.main
+      commands:
+        - pip check
+        - starlite --help
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with cli)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-cryptography
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - cryptography
+    test:
+      imports:
+        - starlite
+        - starlite.middleware.session.cookie_backend
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with cryptography)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-jinja
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - jinja2 >=3.1.2
+    test:
+      imports:
+        - starlite
+        - starlite.contrib.jinja
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with jinja)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-jwt
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - cryptography
+        - python-jose
+    test:
+      imports:
+        - starlite
+        - starlite.contrib.jwt.jwt_token
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with jwt)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-memcached
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - aiomcache
+    test:
+      imports:
+        - starlite
+        - starlite.cache.memcached_cache_backend
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with memcached)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-opentelemetry
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - opentelemetry-instrumentation-asgi
+    test:
+      imports:
+        - starlite
+        - starlite.contrib.opentelemetry.utils
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with opentelemetry)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-picologging
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - picologging
+    test:
+      imports:
+        - starlite
+        - starlite.logging.picologging
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with picologging)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-redis
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - hiredis >=1.0.0
+        - redis-py
+    test:
+      imports:
+        - starlite
+        - starlite.cache.redis_cache_backend
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with redis)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-standard
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - click
+        - jinja2 >=3.1.2
+        - jsbeautifier
+        - picologging
+        - rich >=13.0.0
+    test:
+      imports:
+        - starlite
+        # TODO: import test for standard
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with standard)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-structlog
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - structlog
+    test:
+      imports:
+        - starlite
+        # TODO: import test for structlog
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with structlog)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-tortoise-orm
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - tortoise-orm >=0.17.0
+    test:
+      imports:
+        - starlite
+        - starlite.plugins.tortoise_orm
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with tortoise-orm)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-full
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.7
+      run:
+        - python >=3.7
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - aiomcache
+        - brotli
+        - click
+        - cryptography
+        - hiredis >=1.0.0
+        - jinja2 >=3.1.2
+        - opentelemetry-instrumentation-asgi
+        - picologging
+        - python-jose
+        - redis-py
+        - rich >=13.0.0
+        - structlog
+        - tortoise-orm >=0.17.0
+    test:
+      imports:
+        - starlite
+        # TODO: import test for full
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://starliteproject.dev
+      dev_url: https://github.com/starlite-api/starlite
+      doc_url: https://docs.starliteproject.dev
+      summary: Light-weight and flexible ASGI API Framework (with full)
+      license: MIT
+      license_file: LICENSE
+
 
 about:
-  home: https://github.com/starlite-api/starlite
-  doc_url: https://starlite-api.github.io/starlite/
+  home: https://starliteproject.dev
+  dev_url: https://github.com/starlite-api/starlite
+  doc_url: https://docs.starliteproject.dev
   summary: Light-weight and flexible ASGI API Framework
   license: MIT
   license_file: LICENSE
 
 extra:
+  feedstock-name: starlite
   recipe-maintainers:
     - thewchan
+    - bollwyvl
