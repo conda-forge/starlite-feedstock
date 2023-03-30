@@ -8,6 +8,8 @@ source:
   url: https://pypi.io/packages/source/s/starlite/starlite-{{ version }}.tar.gz
   # the SHA256 gets updated by the bot
   sha256: << sha256_sum >>
+  patches:
+    - 0000-no-pytest-lazy-fixture.patch
 
 build:
   # the build number gets reset by the bot
