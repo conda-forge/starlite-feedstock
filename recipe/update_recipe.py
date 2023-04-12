@@ -41,7 +41,7 @@ DELIMIT = dict(
     variable_start_string="<<",
     variable_end_string=">>",
 )
-DEV_URL = "https://github.com/starlite-api/starlite"
+DEV_URL = "https://github.com/litestar-org/litestar"
 
 #: assume running locally
 HERE = Path(__file__).parent
@@ -72,7 +72,9 @@ except Exception as err:
 TARBALL_URL = f"{DEV_URL}/archive/refs/tags/v{VERSION}.tar.gz"
 
 #: the path to `pyproject.toml` in the tarball
-PYPROJECT_TOML = f"starlite-{VERSION}/pyproject.toml"
+#: at present, this is the only place where the name change has an impact,
+#: but will soon be pervasive on the 2.0.x line
+PYPROJECT_TOML = f"litestar-{VERSION}/pyproject.toml"
 
 #: despite claiming optional, these end up as hard `Requires-Dist`
 KNOWN_REQS = [
@@ -190,7 +192,9 @@ def update_recipe(check=False):
     )
 
     # merge in dev deps late to get some missing version numbers
-    for dep, spec in pyproject["tool"]["poetry"]["group"]["dev"]["dependencies"].items():
+    for dep, spec in pyproject["tool"]["poetry"]["group"]["dev"][
+        "dependencies"
+    ].items():
         if dep not in deps:
             deps[dep] = spec
 

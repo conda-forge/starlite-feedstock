@@ -1,4 +1,4 @@
-{% set version = "1.51.9" %}
+{% set version = "1.51.10" %}
 
 package:
   name: starlite-split
@@ -7,7 +7,7 @@ package:
 source:
   url: https://pypi.io/packages/source/s/starlite/starlite-{{ version }}.tar.gz
   # the SHA256 gets updated by the bot
-  sha256: 349b80046b961f70f75278b7a35a2fd0904dda78241b6250292b04ae3eb1341a
+  sha256: 2bcc98a9d843fa4e4df7a2aff8a4e59be854749356af1aff4a2524668ab8cef7
 
 build:
   # the build number gets reset by the bot
@@ -59,9 +59,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework
       license: MIT
       license_file: LICENSE
@@ -86,9 +86,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with brotli)
       license: MIT
       license_file: LICENSE
@@ -106,6 +106,7 @@ outputs:
         - click
         - jsbeautifier
         - rich >=13.0.0
+        - uvicorn
     test:
       imports:
         - starlite
@@ -116,9 +117,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with cli)
       license: MIT
       license_file: LICENSE
@@ -143,9 +144,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with cryptography)
       license: MIT
       license_file: LICENSE
@@ -170,9 +171,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with jinja)
       license: MIT
       license_file: LICENSE
@@ -198,9 +199,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with jwt)
       license: MIT
       license_file: LICENSE
@@ -225,9 +226,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with memcached)
       license: MIT
       license_file: LICENSE
@@ -252,9 +253,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with opentelemetry)
       license: MIT
       license_file: LICENSE
@@ -279,9 +280,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with picologging)
       license: MIT
       license_file: LICENSE
@@ -307,9 +308,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with redis)
       license: MIT
       license_file: LICENSE
@@ -338,9 +339,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with standard)
       license: MIT
       license_file: LICENSE
@@ -365,9 +366,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with structlog)
       license: MIT
       license_file: LICENSE
@@ -392,9 +393,9 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with tortoise-orm)
       license: MIT
       license_file: LICENSE
@@ -431,18 +432,18 @@ outputs:
       requires:
         - pip
     about:
-      home: https://starliteproject.dev
-      dev_url: https://github.com/starlite-api/starlite
-      doc_url: https://docs.starliteproject.dev
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
       summary: Light-weight and flexible ASGI API Framework (with full)
       license: MIT
       license_file: LICENSE
 
 
 about:
-  home: https://starliteproject.dev
-  dev_url: https://github.com/starlite-api/starlite
-  doc_url: https://docs.starliteproject.dev
+  home: https://litestar.dev
+  dev_url: https://github.com/litestar-org/litestar
+  doc_url: https://docs.litestar.dev
   summary: Light-weight and flexible ASGI API Framework
   license: MIT
   license_file: LICENSE
