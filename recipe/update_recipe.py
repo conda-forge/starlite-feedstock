@@ -72,11 +72,13 @@ except Exception as err:
 TARBALL_URL = f"{DEV_URL}/archive/refs/tags/v{VERSION}.tar.gz"
 
 #: the path to `pyproject.toml` in the tarball
-PYPROJECT_TOML = f"starlite-{VERSION}/pyproject.toml"
+#: at present, this is the only place where the name change has an impact,
+#: but will soon be pervasive on the 2.0.x line
+PYPROJECT_TOML = f"litestar-{VERSION}/pyproject.toml"
 
 #: despite claiming optional, these end up as hard `Requires-Dist`
 KNOWN_REQS = [
-    "mako",
+    # "mako",
 ]
 
 #: these are handled externally
