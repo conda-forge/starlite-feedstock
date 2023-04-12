@@ -41,7 +41,7 @@ DELIMIT = dict(
     variable_start_string="<<",
     variable_end_string=">>",
 )
-DEV_URL = "https://github.com/starlite-api/starlite"
+DEV_URL = "https://github.com/litestar-org/litestar"
 
 #: assume running locally
 HERE = Path(__file__).parent
@@ -192,7 +192,9 @@ def update_recipe(check=False):
     )
 
     # merge in dev deps late to get some missing version numbers
-    for dep, spec in pyproject["tool"]["poetry"]["group"]["dev"]["dependencies"].items():
+    for dep, spec in pyproject["tool"]["poetry"]["group"]["dev"][
+        "dependencies"
+    ].items():
         if dep not in deps:
             deps[dep] = spec
 
