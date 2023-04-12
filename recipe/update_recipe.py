@@ -78,7 +78,7 @@ PYPROJECT_TOML = f"litestar-{VERSION}/pyproject.toml"
 
 #: despite claiming optional, these end up as hard `Requires-Dist`
 KNOWN_REQS = [
-    # "mako",
+    "mako",
 ]
 
 #: these are handled externally
