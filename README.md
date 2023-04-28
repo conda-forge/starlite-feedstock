@@ -6,171 +6,171 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/starlite-feedst
 About starlite
 --------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-brotli
 --------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with brotli)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-cli
 -----------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with cli)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-cryptography
 --------------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with cryptography)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-full
 ------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with full)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-jinja
 -------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with jinja)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-jwt
 -----------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with jwt)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-memcached
 -----------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with memcached)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-opentelemetry
 ---------------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with opentelemetry)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-picologging
 -------------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with picologging)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-redis
 -------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with redis)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-standard
 ----------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with standard)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-structlog
 -----------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with structlog)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 About starlite-with-tortoise-orm
 --------------------------------
 
-Home: https://starliteproject.dev
+Home: https://litestar.dev
 
 Package license: MIT
 
 Summary: Light-weight and flexible ASGI API Framework (with tortoise-orm)
 
-Development: https://github.com/starlite-api/starlite
+Development: https://github.com/litestar-org/litestar
 
-Documentation: https://docs.starliteproject.dev
+Documentation: https://docs.litestar.dev
 
 Current build status
 ====================
