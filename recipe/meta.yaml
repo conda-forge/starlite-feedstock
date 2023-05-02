@@ -1,4 +1,4 @@
-{% set version = "1.51.11" %}
+{% set version = "1.51.12" %}
 
 package:
   name: starlite-split
@@ -7,7 +7,7 @@ package:
 source:
   url: https://pypi.io/packages/source/s/starlite/starlite-{{ version }}.tar.gz
   # the SHA256 gets updated by the bot
-  sha256: 24ca8e84200c13914724b517a5ce5f52f0ab8ff905720d8f60cabc672402d8a3
+  sha256: c785d26291a361dedc52dbf5145be5dfeb41676f0204c49e506fcbafb0a10268
 
 build:
   # the build number gets reset by the bot
