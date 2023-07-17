@@ -46,7 +46,7 @@ outputs:
         - mako >=1.2.4
         - msgspec >=0.11.0
         - multidict >=6.0.2
-        - pydantic
+        - pydantic <2
         - pydantic-openapi-schema >=1.5.0
         - pydantic_factories
         - pyyaml
