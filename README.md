@@ -3,6 +3,7 @@ About starlite-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/starlite-feedstock/blob/main/LICENSE.txt)
 
+
 About starlite
 --------------
 
@@ -15,6 +16,7 @@ Summary: Light-weight and flexible ASGI API Framework
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-brotli
 --------------------------
 
@@ -27,6 +29,7 @@ Summary: Light-weight and flexible ASGI API Framework (with brotli)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-cli
 -----------------------
 
@@ -39,6 +42,7 @@ Summary: Light-weight and flexible ASGI API Framework (with cli)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-cryptography
 --------------------------------
 
@@ -51,6 +55,7 @@ Summary: Light-weight and flexible ASGI API Framework (with cryptography)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-full
 ------------------------
 
@@ -63,6 +68,7 @@ Summary: Light-weight and flexible ASGI API Framework (with full)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-jinja
 -------------------------
 
@@ -75,6 +81,7 @@ Summary: Light-weight and flexible ASGI API Framework (with jinja)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-jwt
 -----------------------
 
@@ -87,6 +94,7 @@ Summary: Light-weight and flexible ASGI API Framework (with jwt)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-memcached
 -----------------------------
 
@@ -99,6 +107,7 @@ Summary: Light-weight and flexible ASGI API Framework (with memcached)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-opentelemetry
 ---------------------------------
 
@@ -111,6 +120,7 @@ Summary: Light-weight and flexible ASGI API Framework (with opentelemetry)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-picologging
 -------------------------------
 
@@ -123,6 +133,7 @@ Summary: Light-weight and flexible ASGI API Framework (with picologging)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-redis
 -------------------------
 
@@ -135,6 +146,7 @@ Summary: Light-weight and flexible ASGI API Framework (with redis)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-standard
 ----------------------------
 
@@ -147,6 +159,7 @@ Summary: Light-weight and flexible ASGI API Framework (with standard)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-structlog
 -----------------------------
 
@@ -159,6 +172,7 @@ Summary: Light-weight and flexible ASGI API Framework (with structlog)
 Development: https://github.com/litestar-org/litestar
 
 Documentation: https://docs.litestar.dev
+
 About starlite-with-tortoise-orm
 --------------------------------
 
