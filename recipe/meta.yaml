@@ -1,4 +1,4 @@
-{% set version = "1.51.12" %}
+{% set version = "1.51.13" %}
 
 package:
   name: starlite-split
@@ -7,7 +7,7 @@ package:
 source:
   url: https://pypi.io/packages/source/s/starlite/starlite-{{ version }}.tar.gz
   # the SHA256 gets updated by the bot
-  sha256: c785d26291a361dedc52dbf5145be5dfeb41676f0204c49e506fcbafb0a10268
+  sha256: 969f175bd3fed21f41090be8be0577a6f5f709c9432d48f9e2fb8ded68680401
 
 build:
   # the build number gets reset by the bot
@@ -46,7 +46,7 @@ outputs:
         - mako >=1.2.4
         - msgspec >=0.11.0
         - multidict >=6.0.2
-        - pydantic
+        - pydantic <2
         - pydantic-openapi-schema >=1.5.0
         - pydantic_factories
         - pyyaml
