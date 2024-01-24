@@ -1,4 +1,4 @@
-{% set version = "1.51.10" %}
+{% set version = "2.5.1" %}
 
 package:
   name: starlite-split
@@ -7,7 +7,7 @@ package:
 source:
   url: https://pypi.io/packages/source/s/starlite/starlite-{{ version }}.tar.gz
   # the SHA256 gets updated by the bot
-  sha256: 2bcc98a9d843fa4e4df7a2aff8a4e59be854749356af1aff4a2524668ab8cef7
+  sha256: 6307278ba4f796542b0cdbfeac82a5e71233da20cb7f744d16c8c7723da3a1cd
 
 build:
   # the build number gets reset by the bot
@@ -16,44 +16,44 @@ build:
 
 requirements:
   host:
-    - python >=3.7
+    - python >=3.8
   run:
-    - python >=3.7
+    - python >=3.8
 
 outputs:
-  - name: starlite
+  - name: litestar
     build:
       noarch: python
       script:
         - {{ PYTHON }} {{ RECIPE_DIR }}/update_recipe.py --check
-        - {{ PYTHON }} -m pip install . -vv --no-deps --ignore-installed --no-build-isolation
+        - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
       entry_points:
-        - starlite = starlite:__main__
+        - litestar = litestar.__main__:run_cli
     requirements:
       host:
         - pip
-        - poetry-core >=1.0.0
-        - python >=3.7
+        - hatchling
+        - python >=3.8
         # for `update_recipe.py` preflight
         - jinja2
         - tomli
       run:
-        - python >=3.7
+        - python >=3.8
         - anyio >=3
-        - fast-query-parsers
+        - click
         - httpx >=0.22
         - importlib-metadata
-        - mako >=1.2.4
-        - msgspec >=0.11.0
+        - importlib-resources >=5.12.0
+        - msgspec >=0.18.2
         - multidict >=6.0.2
-        - pydantic
-        - pydantic-openapi-schema >=1.5.0
-        - pydantic_factories
+        - polyfactory >=2.6.3
         - pyyaml
+        - rich >=13.0.0
+        - rich-click
         - typing_extensions
     test:
       imports:
-        - starlite
+        - litestar
       commands:
         - pip check
       requires:
@@ -66,15 +66,69 @@ outputs:
       license: MIT
       license_file: LICENSE
 
+  - name: starlite-with-annotated-types
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.8
+      run:
+        - python >=3.8
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - annotated-types
+    test:
+      imports:
+        - starlite
+        # TODO: import test for annotated-types
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
+      summary: Light-weight and flexible ASGI API Framework (with annotated-types)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-attrs
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.8
+      run:
+        - python >=3.8
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - attrs
+    test:
+      imports:
+        - starlite
+        # TODO: import test for attrs
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
+      summary: Light-weight and flexible ASGI API Framework (with attrs)
+      license: MIT
+      license_file: LICENSE
+
   - name: starlite-with-brotli
     build:
       noarch: python
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - brotli
     test:
@@ -99,21 +153,20 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
-        - click
         - jsbeautifier
-        - rich >=13.0.0
-        - uvicorn
+        - uvicorn-standard
+        - uvloop >=0.18.0
     test:
       imports:
         - starlite
-        - starlite.cli.main
+        - litestar.cli.main
       commands:
         - pip check
-        - starlite --help
+        - litestar --help
       requires:
         - pip
     about:
@@ -130,15 +183,15 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - cryptography
     test:
       imports:
         - starlite
-        - starlite.middleware.session.cookie_backend
+        - litestar.middleware.session.cookie_backend
       commands:
         - pip check
       requires:
@@ -157,15 +210,15 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - jinja2 >=3.1.2
     test:
       imports:
         - starlite
-        - starlite.contrib.jinja
+        - litestar.contrib.jinja
       commands:
         - pip check
       requires:
@@ -184,16 +237,16 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - cryptography
         - python-jose
     test:
       imports:
         - starlite
-        - starlite.contrib.jwt.jwt_token
+        - litestar.contrib.jwt.jwt_token
       commands:
         - pip check
       requires:
@@ -206,21 +259,21 @@ outputs:
       license: MIT
       license_file: LICENSE
 
-  - name: starlite-with-memcached
+  - name: starlite-with-mako
     build:
       noarch: python
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
-        - aiomcache
+        - mako >=1.2.4
     test:
       imports:
         - starlite
-        - starlite.cache.memcached_cache_backend
+        - litestar.contrib.mako
       commands:
         - pip check
       requires:
@@ -229,7 +282,34 @@ outputs:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
       doc_url: https://docs.litestar.dev
-      summary: Light-weight and flexible ASGI API Framework (with memcached)
+      summary: Light-weight and flexible ASGI API Framework (with mako)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-minijinja
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.8
+      run:
+        - python >=3.8
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - minijinja >=1.0.0
+    test:
+      imports:
+        - starlite
+        # TODO: import test for minijinja
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
+      summary: Light-weight and flexible ASGI API Framework (with minijinja)
       license: MIT
       license_file: LICENSE
 
@@ -239,15 +319,15 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - opentelemetry-instrumentation-asgi
     test:
       imports:
         - starlite
-        - starlite.contrib.opentelemetry.utils
+        - litestar.contrib.opentelemetry.utils
       commands:
         - pip check
       requires:
@@ -260,21 +340,48 @@ outputs:
       license: MIT
       license_file: LICENSE
 
+  - name: starlite-with-piccolo
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.8
+      run:
+        - python >=3.8
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - piccolo
+    test:
+      imports:
+        - starlite
+        # TODO: import test for piccolo
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
+      summary: Light-weight and flexible ASGI API Framework (with piccolo)
+      license: MIT
+      license_file: LICENSE
+
   - name: starlite-with-picologging
     build:
       noarch: python
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - picologging
     test:
       imports:
         - starlite
-        - starlite.logging.picologging
+        - litestar.logging.picologging
       commands:
         - pip check
       requires:
@@ -287,22 +394,77 @@ outputs:
       license: MIT
       license_file: LICENSE
 
+  - name: starlite-with-prometheus
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.8
+      run:
+        - python >=3.8
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - prometheus-client
+    test:
+      imports:
+        - starlite
+        # TODO: import test for prometheus
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
+      summary: Light-weight and flexible ASGI API Framework (with prometheus)
+      license: MIT
+      license_file: LICENSE
+
+  - name: starlite-with-pydantic
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.8
+      run:
+        - python >=3.8
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - email-validator
+        - pydantic
+        - pydantic-extra-types
+    test:
+      imports:
+        - starlite
+        # TODO: import test for pydantic
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
+      summary: Light-weight and flexible ASGI API Framework (with pydantic)
+      license: MIT
+      license_file: LICENSE
+
   - name: starlite-with-redis
     build:
       noarch: python
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
-        - hiredis >=1.0.0
-        - redis-py
+        - hi-redis >=4.4.4
     test:
       imports:
         - starlite
-        - starlite.cache.redis_cache_backend
+        - litestar.cache.redis_cache_backend
       commands:
         - pip check
       requires:
@@ -315,21 +477,48 @@ outputs:
       license: MIT
       license_file: LICENSE
 
+  - name: starlite-with-sqlalchemy
+    build:
+      noarch: python
+    requirements:
+      host:
+        - pip
+        - python >=3.8
+      run:
+        - python >=3.8
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        - advanced-alchemy <1.0.0,>=0.2.2
+    test:
+      imports:
+        - starlite
+        # TODO: import test for sqlalchemy
+      commands:
+        - pip check
+      requires:
+        - pip
+    about:
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
+      summary: Light-weight and flexible ASGI API Framework (with sqlalchemy)
+      license: MIT
+      license_file: LICENSE
+
   - name: starlite-with-standard
     build:
       noarch: python
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
-        - click
-        - jinja2 >=3.1.2
+        - fast-query-parsers >=1.0.2
+        - jinja2
         - jsbeautifier
-        - picologging
-        - rich >=13.0.0
+        - uvicorn-standard
+        - uvloop >=0.18.0
     test:
       imports:
         - starlite
@@ -352,9 +541,9 @@ outputs:
     requirements:
       host:
         - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - structlog
     test:
@@ -373,72 +562,47 @@ outputs:
       license: MIT
       license_file: LICENSE
 
-  - name: starlite-with-tortoise-orm
+  - name: litestar-with-full
     build:
       noarch: python
     requirements:
       host:
-        - pip
-        - python >=3.7
+        - python >=3.8
       run:
-        - python >=3.7
+        - python >=3.8
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
-        - tortoise-orm >=0.17.0
+        - {{ pin_subpackage("starlite-with-annotated-types", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-attrs", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-brotli", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-cli", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-cryptography", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-jinja", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-jwt", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-mako", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-minijinja", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-opentelemetry", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-piccolo", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-picologging", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-prometheus", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-pydantic", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-redis", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-sqlalchemy", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-standard", max_pin="x.x.x") }}
+        - {{ pin_subpackage("starlite-with-structlog", max_pin="x.x.x") }}
     test:
-      imports:
-        - starlite
-        - starlite.plugins.tortoise_orm
-      commands:
-        - pip check
       requires:
         - pip
+      imports:
+        - starlite
+      commands:
+        - pip check
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
       doc_url: https://docs.litestar.dev
-      summary: Light-weight and flexible ASGI API Framework (with tortoise-orm)
+      summary: Light-weight and flexible ASGI API Framework (with all extras)
       license: MIT
       license_file: LICENSE
-
-  - name: starlite-with-full
-    build:
-      noarch: python
-    requirements:
-      host:
-        - pip
-        - python >=3.7
-      run:
-        - python >=3.7
-        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
-        - aiomcache
-        - brotli
-        - click
-        - cryptography
-        - hiredis >=1.0.0
-        - jinja2 >=3.1.2
-        - opentelemetry-instrumentation-asgi
-        - picologging
-        - python-jose
-        - redis-py
-        - rich >=13.0.0
-        - structlog
-        - tortoise-orm >=0.17.0
-    test:
-      imports:
-        - starlite
-        # TODO: import test for full
-      commands:
-        - pip check
-      requires:
-        - pip
-    about:
-      home: https://litestar.dev
-      dev_url: https://github.com/litestar-org/litestar
-      doc_url: https://docs.litestar.dev
-      summary: Light-weight and flexible ASGI API Framework (with full)
-      license: MIT
-      license_file: LICENSE
-
 
 about:
   home: https://litestar.dev

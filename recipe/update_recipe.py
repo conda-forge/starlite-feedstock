@@ -1,4 +1,4 @@
-"""(re-)generate the starlite multi-output recipe based on `pyproject.toml`
+"""(re-)generate the litestar multi-output recipe based on `pyproject.toml`
 
 Invoke this locally from the root of the feedstock, assuming `tomli` and `jinja2`:
 
@@ -33,6 +33,7 @@ import difflib
 
 import jinja2
 import tomli
+from packaging.requirements import Requirement
 
 DELIMIT = dict(
     # use alternate template delimiters to avoid conflicts
@@ -55,7 +56,7 @@ if "RECIPE_DIR" in os.environ:
 TMPL = [*WORK_DIR.glob("*.j2.*")]
 META = WORK_DIR / "meta.yaml"
 CURRENT_META_TEXT = META.read_text(encoding="utf-8")
-MIN_PYTHON = ">=3.7"
+MIN_PYTHON = ">=3.8"
 
 #: read the version from what the bot might have updated
 try:
@@ -91,69 +92,54 @@ TRANFORM_DEP = {
     "pydantic-factories": "pydantic_factories",
     "redis": "redis-py",
     "typing-extensions": "typing_extensions",
+    "uvicorn[standard]": "uvicorn-standard",
+}
+
+#: handle lack of conda support for [extras]
+TRANSFORM_EXTRA_DEP = {
+    ("uvicorn", ("standard",)): "uvicorn-standard",
+    # https://github.com/redis/redis-py/blob/v4.5.3/setup.py#L57
+    ("redis-py", ("hiredis",)): "hi-redis",
 }
 
 #: handle transient extras incurred, keyed by post-transform names
-EXTRA_EXTRA_DEPS = {
-    # https://github.com/redis/redis-py/blob/v4.5.3/setup.py#L57
-    "redis-py": ["hiredis >=1.0.0"],
-}
+EXTRA_EXTRA_DEPS = {}
 
 #: a meaningful import that isn't caught
 EXTRA_TEST_IMPORTS = {
-    "cli": "starlite.cli.main",
-    "cryptography": "starlite.middleware.session.cookie_backend",
-    "jinja": "starlite.contrib.jinja",
-    "jwt": "starlite.contrib.jwt.jwt_token",
-    "mako": "starlite.contrib.mako",
-    "memcached": "starlite.cache.memcached_cache_backend",
-    "opentelemetry": "starlite.contrib.opentelemetry.utils",
-    "picologging": "starlite.logging.picologging",
-    "redis": "starlite.cache.redis_cache_backend",
-    "tortoise-orm": "starlite.plugins.tortoise_orm",
+    "cli": "litestar.cli.main",
+    "cryptography": "litestar.middleware.session.cookie_backend",
+    "jinja": "litestar.contrib.jinja",
+    "jwt": "litestar.contrib.jwt.jwt_token",
+    "mako": "litestar.contrib.mako",
+    "memcached": "litestar.cache.memcached_cache_backend",
+    "opentelemetry": "litestar.contrib.opentelemetry.utils",
+    "picologging": "litestar.logging.picologging",
+    "redis": "litestar.cache.redis_cache_backend",
+    "tortoise-orm": "litestar.plugins.tortoise_orm",
 }
 
 #: commands to run after `pip check`
 EXTRA_TEST_COMMANDS = {
-    "cli": "starlite --help",
+    "cli": "litestar --help",
 }
 
 #: some extras may become temporarily broken: add them here to skip
-SKIP_EXTRAS = []
+SKIP_EXTRAS = [
+    # re-built manually
+    "full"
+]
 
 
-def is_required(dep, dep_spec):
-    required = True
-    print(f"is {dep} required: {dep_spec}")
-
-    if dep in KNOWN_SKIP:
-        required = False
-    elif dep in KNOWN_REQS:
-        required = True
-    elif isinstance(dep_spec, dict) and dep_spec.get("optional"):
-        required = False
-
-    print("...", required)
-    return required
-
-
-def reqtify(raw, deps):
+def reqtify(raw):
     """split dependency into conda requirement"""
-    dep = deps[raw]
-    raw = TRANFORM_DEP.get(raw, raw).lower()
-    if not isinstance(dep, str):
-        dep = dep["version"]
-
-    if "~" in dep or "^" in dep:
-        op = dep[0]
-        bits = dep[1:].split(".")
-        bits = bits[:1] if op == "^" else bits[:2]
-        dep = ".".join([*bits, "*"])
-
-    if dep == "*":
-        return raw.lower()
-
-    return f"{raw} {dep}"
+    req = Requirement(raw)
+    name = req.name
+    dep = str(req.specifier)
+    name = TRANFORM_DEP.get(name, name).lower()
+    if req.extras:
+        name = TRANSFORM_EXTRA_DEP[(name, tuple(sorted(req.extras)))]
+    return f"{name} {dep}".strip()
 
 
 def preflight_recipe():
@@ -186,21 +172,12 @@ def update_recipe(check=False):
     """update or check a recipe based on the `pyproject.toml` data"""
     preflight_recipe()
     pyproject = get_pyproject_data()
-    deps = pyproject["tool"]["poetry"]["dependencies"]
-    core_deps = sorted(
-        [reqtify(d, deps) for d, d_spec in deps.items() if is_required(d, d_spec)]
-    )
+    deps = pyproject["project"]["dependencies"]
+    core_deps = sorted([reqtify(d_spec) for d_spec in deps])
 
-    # merge in dev deps late to get some missing version numbers
-    for dep, spec in pyproject["tool"]["poetry"]["group"]["dev"][
-        "dependencies"
-    ].items():
-        if dep not in deps:
-            deps[dep] = spec
-
-    extras = pyproject["tool"]["poetry"]["extras"]
+    extras = pyproject["project"]["optional-dependencies"]
     extra_outputs = {
-        extra: sorted([reqtify(d, deps) for d in extra_deps if d in deps])
+        extra: sorted([reqtify(d_spec) for d_spec in extra_deps])
         for extra, extra_deps in extras.items()
         if extra not in SKIP_EXTRAS
     }

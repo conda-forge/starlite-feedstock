@@ -21,18 +21,18 @@ requirements:
     - python << min_python >>
 
 outputs:
-  - name: starlite
+  - name: litestar
     build:
       noarch: python
       script:
         - {{ PYTHON }} {{ RECIPE_DIR }}/update_recipe.py --check
-        - {{ PYTHON }} -m pip install . -vv --no-deps --ignore-installed --no-build-isolation
+        - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
       entry_points:
-        - starlite = starlite:__main__
+        - litestar = litestar.__main__:run_cli
     requirements:
       host:
         - pip
-        - poetry-core >=1.0.0
+        - hatchling
         - python << min_python >>
         # for `update_recipe.py` preflight
         - jinja2
@@ -43,7 +43,7 @@ outputs:
         <%- endfor %>
     test:
       imports:
-        - starlite
+        - litestar
       commands:
         - pip check
       requires:
@@ -89,6 +89,32 @@ outputs:
       license: MIT
       license_file: LICENSE
 <% endfor %>
+  - name: litestar-with-full
+    build:
+      noarch: python
+    requirements:
+      host:
+        - python << min_python >>
+      run:
+        - python << min_python >>
+        - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
+        <%- for extra, extra_deps in extra_outputs.items() %>
+        - {{ pin_subpackage("starlite-with-<< extra >>", max_pin="x.x.x") }}
+        <%- endfor %>
+    test:
+      requires:
+        - pip
+      imports:
+        - starlite
+      commands:
+        - pip check
+    about:
+      home: https://litestar.dev
+      dev_url: https://github.com/litestar-org/litestar
+      doc_url: https://docs.litestar.dev
+      summary: Light-weight and flexible ASGI API Framework (with all extras)
+      license: MIT
+      license_file: LICENSE
 
 about:
   home: https://litestar.dev
