@@ -39,7 +39,7 @@ outputs:
         - tomli
       run:
         - python >=3.7
-        - anyio >=3
+        - anyio >=3,<4
         - fast-query-parsers
         - httpx >=0.22
         - importlib-metadata
@@ -383,7 +383,7 @@ outputs:
       run:
         - python >=3.7
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
-        - tortoise-orm >=0.17.0
+        - tortoise-orm >=0.17.0,<0.20.0
     test:
       imports:
         - starlite
@@ -422,7 +422,7 @@ outputs:
         - redis-py
         - rich >=13.0.0
         - structlog
-        - tortoise-orm >=0.17.0
+        - tortoise-orm >=0.17.0,<0.20.0
     test:
       imports:
         - starlite
