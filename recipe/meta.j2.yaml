@@ -1,11 +1,13 @@
 {% set version = "<< version >>" %}
 
+{% set PYTHON = PYTHON | default("$PYTHON") %}
+
 package:
-  name: starlite-split
+  name: starlite
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/s/starlite/starlite-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/s/starlite/starlite-{{ version }}.tar.gz
   # the SHA256 gets updated by the bot
   sha256: << sha256_sum >>
 
@@ -13,62 +15,47 @@ build:
   # the build number gets reset by the bot
   number: << build_number >>
   noarch: python
+  script:
+    - {{ PYTHON }} {{ RECIPE_DIR }}/update_recipe.py --check
+    - {{ PYTHON }} -m pip install . -vv --no-deps --ignore-installed --no-build-isolation
+  entry_points:
+    - starlite = starlite:__main__
 
 requirements:
   host:
-    - python << min_python >>
+    - pip
+    - poetry-core >=1.0.0
+    - python {{ python_min }}
+    # for `update_recipe.py` preflight
+    - jinja2
+    - tomli
   run:
-    - python << min_python >>
+    - python >={{ python_min }}<% for dep in core_deps %>
+    - << dep >>
+    <%- endfor %>
+test:
+  imports:
+    - starlite
+  commands:
+    - pip check
+  requires:
+    - pip
 
 outputs:
   - name: starlite
-    build:
-      noarch: python
-      script:
-        - {{ PYTHON }} {{ RECIPE_DIR }}/update_recipe.py --check
-        - {{ PYTHON }} -m pip install . -vv --no-deps --ignore-installed --no-build-isolation
-      entry_points:
-        - starlite = starlite:__main__
-    requirements:
-      host:
-        - pip
-        - poetry-core >=1.0.0
-        - python << min_python >>
-        # for `update_recipe.py` preflight
-        - jinja2
-        - tomli
-      run:
-        - python << min_python >><% for dep in core_deps %>
-        - << dep >>
-        <%- endfor %>
-    test:
-      imports:
-        - starlite
-      commands:
-        - pip check
-      requires:
-        - pip
-    about:
-      home: https://litestar.dev
-      dev_url: https://github.com/litestar-org/litestar
-      doc_url: https://docs.litestar.dev
-      summary: Light-weight and flexible ASGI API Framework
-      license: MIT
-      license_file: LICENSE
 <% for extra, extra_deps in extra_outputs.items() %>
   - name: starlite-with-<< extra >>
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python << min_python >>
       run:
-        - python << min_python >>
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}<% for dep in extra_deps %>
         - << dep >>
         <%- endfor %>
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite<% if extra in extra_test_imports %>
         - << extra_test_imports[extra] >>
@@ -79,8 +66,6 @@ outputs:
         - pip check<% if extra in extra_test_commands %>
         - << extra_test_commands[extra] >>
         <%- endif %>
-      requires:
-        - pip
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
