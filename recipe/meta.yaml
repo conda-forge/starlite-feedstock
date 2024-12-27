@@ -1,7 +1,7 @@
 {% set version = "1.51.16" %}
 
 package:
-  name: starlite-split
+  name: starlite
   version: {{ version }}
 
 source:
@@ -13,80 +13,61 @@ build:
   # the build number gets reset by the bot
   number: 1
   noarch: python
+  script:
+    - {{ PYTHON }} {{ RECIPE_DIR }}/update_recipe.py --check
+    - {{ PYTHON }} -m pip install . -vv --no-deps --ignore-installed --no-build-isolation
+  entry_points:
+    - starlite = starlite:__main__
 
 requirements:
   host:
+    - pip
+    - poetry-core >=1.0.0
     - python {{ python_min }}
+    # for `update_recipe.py` preflight
+    - jinja2
+    - tomli
   run:
     - python >={{ python_min }}
+    - anyio >=3,<4
+    - fast-query-parsers
+    - httpx >=0.22
+    - importlib-metadata
+    - mako >=1.2.4
+    - msgspec >=0.11.0
+    - multidict >=6.0.2
+    - pydantic <2
+    - pydantic-openapi-schema >=1.5.0
+    - pydantic_factories
+    - pyyaml
+    - typing_extensions
+test:
+  imports:
+    - starlite
+  commands:
+    - pip check
+  requires:
+    - pip
 
 outputs:
   - name: starlite
-    build:
-      noarch: python
-      script:
-        - {{ PYTHON }} {{ RECIPE_DIR }}/update_recipe.py --check
-        - {{ PYTHON }} -m pip install . -vv --no-deps --ignore-installed --no-build-isolation
-      entry_points:
-        - starlite = starlite:__main__
-    requirements:
-      host:
-        - pip
-        - poetry-core >=1.0.0
-        - python {{ python_min }}
-        # for `update_recipe.py` preflight
-        - jinja2
-        - tomli
-      run:
-        - python >={{ python_min }}
-        - anyio >=3,<4
-        - fast-query-parsers
-        - httpx >=0.22
-        - importlib-metadata
-        - mako >=1.2.4
-        - msgspec >=0.11.0
-        - multidict >=6.0.2
-        - pydantic <2
-        - pydantic-openapi-schema >=1.5.0
-        - pydantic_factories
-        - pyyaml
-        - typing_extensions
-    test:
-      imports:
-        - starlite
-      commands:
-        - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
-    about:
-      home: https://litestar.dev
-      dev_url: https://github.com/litestar-org/litestar
-      doc_url: https://docs.litestar.dev
-      summary: Light-weight and flexible ASGI API Framework
-      license: MIT
-      license_file: LICENSE
 
   - name: starlite-with-brotli
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - brotli
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         # TODO: import test for brotli
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -97,28 +78,24 @@ outputs:
 
   - name: starlite-with-cli
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - click
         - jsbeautifier
         - rich >=13.0.0
         - uvicorn
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         - starlite.cli.main
       commands:
         - pip check
         - starlite --help
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -129,24 +106,20 @@ outputs:
 
   - name: starlite-with-cryptography
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - cryptography
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         - starlite.middleware.session.cookie_backend
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -157,24 +130,20 @@ outputs:
 
   - name: starlite-with-jinja
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - jinja2 >=3.1.2
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         - starlite.contrib.jinja
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -185,25 +154,21 @@ outputs:
 
   - name: starlite-with-jwt
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - cryptography
         - python-jose
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         - starlite.contrib.jwt.jwt_token
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -214,24 +179,20 @@ outputs:
 
   - name: starlite-with-memcached
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - aiomcache
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         - starlite.cache.memcached_cache_backend
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -242,24 +203,20 @@ outputs:
 
   - name: starlite-with-opentelemetry
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - opentelemetry-instrumentation-asgi
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         - starlite.contrib.opentelemetry.utils
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -270,24 +227,20 @@ outputs:
 
   - name: starlite-with-picologging
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - picologging
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         - starlite.logging.picologging
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -298,25 +251,21 @@ outputs:
 
   - name: starlite-with-redis
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - hiredis >=1.0.0
         - redis-py
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         - starlite.cache.redis_cache_backend
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -327,13 +276,9 @@ outputs:
 
   - name: starlite-with-standard
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - click
         - jinja2 >=3.1.2
@@ -341,14 +286,14 @@ outputs:
         - picologging
         - rich >=13.0.0
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         # TODO: import test for standard
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -359,24 +304,20 @@ outputs:
 
   - name: starlite-with-structlog
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - structlog
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         # TODO: import test for structlog
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -387,24 +328,20 @@ outputs:
 
   - name: starlite-with-tortoise-orm
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - tortoise-orm >=0.17.0,<0.20.0
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         - starlite.plugins.tortoise_orm
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
@@ -415,13 +352,9 @@ outputs:
 
   - name: starlite-with-full
     build:
-      noarch: python
+      noarch: generic
     requirements:
-      host:
-        - pip
-        - python {{ python_min }}
       run:
-        - python >={{ python_min }}
         - {{ pin_subpackage("starlite", max_pin="x.x.x") }}
         - aiomcache
         - brotli
@@ -437,14 +370,14 @@ outputs:
         - structlog
         - tortoise-orm >=0.17.0,<0.20.0
     test:
+      requires:
+        - pip
+        - python {{ python_min }}
       imports:
         - starlite
         # TODO: import test for full
       commands:
         - pip check
-      requires:
-        - pip
-        - python {{ python_min }}
     about:
       home: https://litestar.dev
       dev_url: https://github.com/litestar-org/litestar
