@@ -1,5 +1,7 @@
 {% set version = "1.51.16" %}
 
+{% set PYTHON = PYTHON | default("$PYTHON") %}
+
 package:
   name: starlite
   version: {{ version }}

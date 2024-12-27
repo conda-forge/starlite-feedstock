@@ -1,5 +1,7 @@
 {% set version = "<< version >>" %}
 
+{% set PYTHON = PYTHON | default("$PYTHON") %}
+
 package:
   name: starlite
   version: {{ version }}
